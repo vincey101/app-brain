@@ -75,10 +75,12 @@ class App extends Component {
   onInputChange = (event) => {
     this.setState({ input: event.target.value });
   };
+  
 
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-    fetch("https://evening-reef-38125.herokuapp.com/imageurl", {
+    // fetch("https://evening-reef-38125.herokuapp.com/imageurl", {
+    fetch("https://smart-api-h415.onrender.com/imageurl", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -88,7 +90,8 @@ class App extends Component {
       .then(response => response.json())
       .then((response) => {
         if (response) {
-          fetch("https://evening-reef-38125.herokuapp.com/image", {
+          fetch("https://smart-api-h415.onrender.com/image", {
+          // fetch("https://evening-reef-38125.herokuapp.com/image", {
             method: "put",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
