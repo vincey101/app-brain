@@ -21,6 +21,25 @@ class Register extends React.Component {
     this.setState({ email: event.target.value });
   };
 
+  // onSubmitSignIn = () => {
+  //   fetch("https://smart-api-h415.onrender.com/register", {
+  //     method: "post",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({
+  //       name: this.state.name,
+  //       password: this.state.password,
+  //       email: this.state.email,
+  //     }),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((user) => {
+  //       if (user.id) {
+  //         this.props.loadUser(user);
+  //         this.props.onRouteChange("home");
+  //       }
+  //     });
+  // };
+
   onSubmitSignIn = () => {
     fetch("https://smart-api-h415.onrender.com/register", {
       method: "post",
@@ -35,9 +54,11 @@ class Register extends React.Component {
       .then((user) => {
         if (user.id) {
           this.props.loadUser(user);
-          this.props.onRouteChange("home");
+          // Redirect to the sign-in page after successful registration
+          this.props.onRouteChange("signin");
         }
-      });
+      })
+      .catch((err) => console.log("Registration error", err));
   };
 
   render() {
